@@ -1,12 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
+
 body {
-    display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
-    width: 100%;
+    background: linear-gradient(180deg, #02033f, #4d042e);
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    background-color: rgb(206, 201, 201);
-    font-family: 'Balsamiq Sans', sans-serif;
+}
+
+h5 {
+     color: #fff;
+     font-family: 'Nunito', sans-serif;
 }
 
 #controls {
@@ -14,6 +22,18 @@ body {
 }
 
 #simon-board {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+#score-board {
+    padding-top: 5px;
+    color: #fff;
+    border-color: #0781e6;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
@@ -36,6 +56,7 @@ body {
 }
 
 .top-left {
+    
     background-color: darkgreen;
 }
 
@@ -52,28 +73,38 @@ body {
 }
 
 .level-count {
-    color: black;
     padding: 0.25rem 1rem;
 }
 
-#start-btn,
+#reset-btn,
 #power-btn {
     font-family: 'Balsamiq Sans', sans-serif;
     margin-top: 5px;
-    padding: 10px;
-    font-size: 16px;
     text-align: center;
-     position: relative;
-    width: 100%;
+    position: relative;
     cursor: pointer;
-    background-color: #2ecc71;
     color: #fff;
-    border: none;
     outline: none;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    
+    border: none;
+    border-radius: 30px;
+    padding: 12px 32px;
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+   
+    transition: all 0.2s ease;
 }
 
+#power-btn {
+    background-color: #88E0A8;
+}
+
+#reset-btn {
+    background-color: #fd2033;
+}
 
 #start-btn:hover,
 #power-btn:hover {

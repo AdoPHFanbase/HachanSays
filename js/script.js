@@ -17,6 +17,8 @@ let userSequence = [];
 let level = 1;
 
 const levelCount = document.querySelector('.level-count');
+const levelCountHigh = document.querySelector('.level-count-high');
+levelCountHigh.textContent = getCookie("hiscore")
 
 function startGame() {
    
@@ -24,9 +26,10 @@ function startGame() {
     userSequence.length = 0;
     level = 0;
     levelCount.textContent = level;
+    
 
     nextRound();
-    document.getElementById("start-btn").disabled = true;
+
     document.getElementById("power-btn").disabled = false;
 }
 
@@ -68,12 +71,13 @@ function handleClick(button) {
         highlightButton(userColor, 0);
         if (!checkSequence()) {
             alert(`Game over! Press Start to retry! \nFINAL SCORE: ${level}`);
-            togglePower();
-            startGame();
+            location.reload()
         } else if (userSequence.length === sequence.length) {
             userSequence = [];
             level++;
             levelCount.textContent = level;
+            createCookie(level)
+            levelCountHigh.textContent = getCookie("hiscore");
             showLevel(level + 1);
             overlayOn();
             
@@ -139,17 +143,35 @@ function disableButtons() {
 
 function togglePower() {
     powerOn = !powerOn;
+    document.getElementById("power-btn").style.display = "none";
+    document.getElementById("reset-btn").style.display = "block";
     if (powerOn) {
         startGame();
         enableButtons();
-        document.getElementById("start-btn")
+        document.getElementById("power-btn")
         .disabled = false;
     } else {
         userSequence = [];
         disableButtons();
-        document.getElementById("start-btn")
+        document.getElementById("power-btn")
         .disabled = true;
     }
+}
+
+function createCookie(score) {
+    let highscore = getCookie("hiscore");
+    if(score > highscore) {
+        document.cookie = "hiscore=" + score;
+    }
+}
+
+function getCookie(name) {
+  const m = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+  return m ? decodeURIComponent(m[2]) : null;
+}
+
+function toggleReset() {
+    location.reload();
 }
 
 // flying hachan lmao

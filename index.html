@@ -28,11 +28,28 @@
 
             <h5 class="card-title">Ha chan Says!</h5> 
 
-            <div id="level">
-                <span>Score : 
-                    <span class="level-count">-</span>
-                </span>
+            
+            
+
+            <div id="score-board">
+                <div>
+                    <div id="level" >
+                        <span>Score : <br>
+                            <span class="level-count">-</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div>  
+                    <div id="highlevel">
+                        <span>Best: <br>
+                            <span class="level-count-high">-</span>
+                        </span>
+                    </div>
+                </div>
             </div>
+                
+
           
             <div id="simon-board">
                 <div>
@@ -57,7 +74,8 @@
             </div>
 
         
-            <div id="power-btn" onclick="togglePower()">Start</div>
+            <div id="power-btn" onclick="togglePower()" style="display: block;">Start</div>
+            <div id="reset-btn" onclick="toggleReset()">Reset</div>
 
     </div>
    
