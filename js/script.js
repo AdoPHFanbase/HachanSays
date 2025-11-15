@@ -2,9 +2,6 @@
 
 
 //actual game
-
-
-
 const char1 = new Audio('sfx/simon_ado2.wav'); 
 const char2 = new Audio('sfx/simon_naima.wav'); 
 const char3 = new Audio('sfx/simon_migu.wav'); 
@@ -70,7 +67,7 @@ function handleClick(button) {
         userSequence.push(Number(userColor));
         highlightButton(userColor, 0);
         if (!checkSequence()) {
-            alert(`Game over! Press Start to retry! \nFINAL SCORE: ${level}`);
+            alert(`Game over! Closing this alert will reset the game. \nFINAL SCORE: ${level}`);
             location.reload()
         } else if (userSequence.length === sequence.length) {
             userSequence = [];
@@ -159,9 +156,13 @@ function togglePower() {
 }
 
 function createCookie(score) {
-    let highscore = getCookie("hiscore");
-    if(score > highscore) {
-        document.cookie = "hiscore=" + score;
+
+    var cookieExist = getCookie("flag")
+    if(cookieExist != null) {
+        let highscore = getCookie("hiscore");
+        if(score > highscore) {
+            document.cookie = "hiscore=" + score;
+        }
     }
 }
 
@@ -206,4 +207,23 @@ function showLevel(currentCount) {
             boxProper.innerHTML = StageTemp;
 }
 
+function cookieCheck() {
+    var cookieExist = getCookie("flag")
+    if(cookieExist != null) {
+        
+    } else {
+        document.getElementById("simple-cookie-consent").style.display = "block";
+    }
+}
+
+function toggleCookie() {
+    document.cookie = "flag=" + 1;
+    document.getElementById("simple-cookie-consent").style.display = "none";
+}
+
+function toggleCookieNope() {
+    document.getElementById("simple-cookie-consent").style.display = "none";
+}
+
+cookieCheck()
 imageChange()
